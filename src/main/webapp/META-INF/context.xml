@@ -1,5 +1,5 @@
 <Context>
-    <Resource name="jdbc/posBackend" auth="Container" type="javax.sql.DataSource"
+    <Resource name="jdbc/cusRegistration" auth="Container" type="javax.sql.DataSource"
               maxTotal="10" maxIdle="8" maxWaitMillis="-1"
               username="uroot" password="ijse1234" driverClassName="com.mysql.cj.jdbc.Driver"
               url="jdbc:mysql://localhost:3306/PTO?createDatabaseIfNotExist=true"/>
