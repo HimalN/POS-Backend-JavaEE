@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -14,6 +13,6 @@ public class ItemDTO implements Serializable {
     private String itemName;
     private String category;
     private  String weight;
-    private float price;
-    private int qty;
+    private String price;
+    private String qty;
 }

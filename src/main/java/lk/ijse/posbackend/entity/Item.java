@@ -13,6 +13,6 @@ public class Item implements Serializable {
     private String itemName;
     private String category;
     private  String weight;
-    private float price;
-    private int qty;
+    private String price;
+    private String qty;
 }

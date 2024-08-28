@@ -26,7 +26,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-@WebServlet(urlPatterns = "/CustomerController")
+@WebServlet(urlPatterns = "/customerController")
 public class CustomerController extends HttpServlet {
     Connection connection;
     CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
@@ -37,7 +37,7 @@ public class CustomerController extends HttpServlet {
         logger.info("Customer Controller Initialized");
         try {
             var ctx = new InitialContext();
-            DataSource pool = (DataSource) ctx.lookup("java:comp/env/jdbc/cusRegistration");
+            DataSource pool = (DataSource) ctx.lookup("java:comp/env/jdbc/Registration");
             this.connection = pool.getConnection();
         } catch (NamingException | SQLException e) {
             throw new RuntimeException(e);
