@@ -17,4 +17,6 @@ public interface ItemBO extends SuperBO {
     boolean deleteItem(String customerID, Connection connection) throws SQLException;
 
     boolean updateItem(String customerID, CustomerDTO customerDTO, Connection connection) throws SQLException;
+
+    ItemDTO searchItem(String itemID, Connection connection) throws SQLException;
 }

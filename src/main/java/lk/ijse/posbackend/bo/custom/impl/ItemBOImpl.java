@@ -35,4 +35,14 @@ public class ItemBOImpl implements ItemBO {
     public boolean updateItem(String customerID, CustomerDTO customerDTO, Connection connection) throws SQLException {
         return false;
     }
+
+    @Override
+    public ItemDTO searchItem(String itemID, Connection connection) throws SQLException {
+        Item item = itemDAO.search(itemID,connection);
+        if (item != null) {
+            return new ItemDTO(item.getItemCode(), item.getItemName(), item.getCategory(), item.getWeight(),item.getPrice(),item.getQty());
+        } else {
+            return null;
+        }
+    }
 }

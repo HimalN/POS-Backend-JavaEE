@@ -42,4 +42,9 @@ public class ItemsDAOImpl implements ItemDAO {
     public boolean delete(String id, Connection connection) throws SQLException {
         return false;
     }
+
+    @Override
+    public Item search(String id, Connection connection) throws SQLException {
+        return null;
+    }
 }

@@ -2,6 +2,7 @@ package lk.ijse.posbackend.controller;
 
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
+import jakarta.json.bind.JsonbException;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,6 +21,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/itemController")
 public class ItemController extends HttpServlet {
@@ -69,4 +71,43 @@ public class ItemController extends HttpServlet {
                 throw new RuntimeException(e);
             }
     }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        /*Todo: Get Details*/
+        if (req.getParameter("itemID") != null) {
+            searchItem(req, resp);
+        } else {
+            loadAllItems(req, resp);
+        }
+    }
+    private void searchItem(HttpServletRequest req, HttpServletResponse resp) {
+        var itemID = req.getParameter("itemID");
+        try (var writer = resp.getWriter()){
+            ItemDTO item = itemBO.searchItem(itemID,connection);
+            var jsonb = JsonbBuilder.create();
+            resp.setContentType("application/json");
+            jsonb.toJson(item,writer);
+        } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void loadAllItems(HttpServletRequest req, HttpServletResponse resp) {
+        try (var writer = resp.getWriter()) {
+            List<ItemDTO> iteDTOList = itemBO.getAllItem(connection);
+            if (iteDTOList != null) {
+                resp.setContentType("application/json");
+                Jsonb jsonb = JsonbBuilder.create();
+                jsonb.toJson(iteDTOList, writer);
+            } else {
+                writer.write("No items found");
+                resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
 }
