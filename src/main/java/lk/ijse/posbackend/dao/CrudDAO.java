@@ -9,4 +9,5 @@ public interface CrudDAO<T> extends SuperDAO{
     List<T> getAll(Connection connection) throws SQLException;
     boolean update(String id,T dto, Connection connection) throws SQLException;
     boolean delete(String id,Connection connection) throws SQLException;
+    T search(String id, Connection connection) throws SQLException;
 }
