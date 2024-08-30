@@ -49,7 +49,6 @@ public class CustomerDAOImpl implements CustomerDAO {
             );
             customerList.add(customers);
         }
-        logger.info(customerList.toString());
         return customerList;
     }
 
