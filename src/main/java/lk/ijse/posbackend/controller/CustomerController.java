@@ -142,7 +142,7 @@ public class CustomerController extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         /*Todo: Delete Details*/
 
-        var customerID = req.getParameter("customerID");
+        var customerID = req.getParameter("id");
         try {
             boolean isDeleted = customerBO.deleteCustomer(customerID,connection);
             if (isDeleted) {

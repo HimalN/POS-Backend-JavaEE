@@ -21,6 +21,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     static Logger logger = LoggerFactory.getLogger(CustomerController.class);
     @Override
     public boolean save(Customer customer, Connection connection) throws SQLException {
+        logger.info("Save Customer");
         try {
             var ps = connection.prepareStatement(SAVE_CUSTOMERS);
             ps.setString(1, customer.getCustomerID());
@@ -37,7 +38,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public List<Customer> getAll(Connection connection) throws SQLException {
         var ps = connection.prepareStatement(GET_ALL_CUSTOMERS);
-        logger.info("Working on it");
+        logger.info("Get All Customer");
         var resultSet = ps.executeQuery();
         List<Customer> customerList = new ArrayList<>();
         while (resultSet.next()){
@@ -54,6 +55,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public boolean update(String id, Customer dto, Connection connection) throws SQLException {
+        logger.info("Update Customer");
         try {
             var ps = connection.prepareStatement(UPDATE_CUSTOMERS);
             ps.setString(1, dto.getCustomerName());
@@ -61,7 +63,6 @@ public class CustomerDAOImpl implements CustomerDAO {
             ps.setString(3, dto.getCustomerPhoneNumber());
             ps.setString(4, id);
 
-            logger.info(ps.toString());
             return ps.executeUpdate() != 0;
         } catch (SQLException e) {
             throw new SQLException(e);
@@ -70,6 +71,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public boolean delete(String id, Connection connection) throws SQLException {
+        logger.info("Delete Customer");
         try {
             var ps = connection.prepareStatement(DELETE_CUSTOMERS);
             ps.setString(1, id);
@@ -81,7 +83,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public Customer search(String id, Connection connection) throws SQLException {
-        logger.info("Searching customer");
         Customer customer = null;
 
         var ps = connection.prepareStatement(SEARCH_CUSTOMERS);
