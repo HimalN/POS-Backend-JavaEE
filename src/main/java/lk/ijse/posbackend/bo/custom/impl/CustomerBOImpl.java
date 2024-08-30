@@ -1,10 +1,13 @@
 package lk.ijse.posbackend.bo.custom.impl;
 
 import lk.ijse.posbackend.bo.custom.CustomerBO;
+import lk.ijse.posbackend.controller.CustomerController;
 import lk.ijse.posbackend.dao.DAOFactory;
 import lk.ijse.posbackend.dao.custom.CustomerDAO;
 import lk.ijse.posbackend.dto.CustomerDTO;
 import lk.ijse.posbackend.entity.Customer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,6 +17,7 @@ import java.util.List;
 public class CustomerBOImpl implements CustomerBO {
 
     CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
+    static Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     @Override
     public boolean saveCustomer(CustomerDTO customerDTO, Connection connection) throws SQLException {

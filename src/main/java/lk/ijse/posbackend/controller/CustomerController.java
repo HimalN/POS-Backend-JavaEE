@@ -80,7 +80,8 @@ public class CustomerController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getParameter("customerId")!=null){
+        if (req.getParameter("customerID")!=null){
+            logger.info("Searching customer by ID");
             searchCustomerByID(req,resp);
         }else {
             loadAllCustomers(req,resp);
@@ -94,6 +95,7 @@ public class CustomerController extends HttpServlet {
             var jsonb = JsonbBuilder.create();
             resp.setContentType("application/json");
             jsonb.toJson(customer,writer);
+
         } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
