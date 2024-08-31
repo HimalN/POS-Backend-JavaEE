@@ -89,10 +89,6 @@ public class CustomerDAOImpl implements CustomerDAO {
         ps.setString(1, id);
         var rs = ps.executeQuery();
 
-        System.out.println("result"+ps);
-        System.out.println("result"+rs);
-
-        System.out.println(rs.getString("name"));
         while (rs.next()) {
             String customerID = rs.getString("id");
             String customerName = rs.getString("name");
